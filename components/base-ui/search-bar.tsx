@@ -1,5 +1,7 @@
 'use client';
 
+import { Search } from "iconoir-react";
+
 type SearchBarProps = {
   value: string;
   onSearchChange: (newQuery: string) => void;
@@ -11,15 +13,20 @@ export default function SearchBar({ onSearchChange, value }: SearchBarProps) {
     onSearchChange(event.target.value);
   };
 
+  const secondary = 'var(--secondary)';
+
   return (
-    <div className="min-w-[150px] sm:max-w-[250px] sm:w-max w-full">
+    <div
+      className="min-w-[150px] sm:max-w-[250px] sm:w-max w-full flex px-4 py-3 bg-background border-2 border-secondary rounded-full text-foreground"
+    >
       <input
         type="text"
         value={value}
         onChange={handleChange}
         placeholder="Search by zip"
-        className="w-full px-4 py-3 bg-background border border-foreground rounded-lg text-foreground placeholder-foreground-alt focus:outline-none focus:ring-2 focus:ring-primary transition"
+        className="flex-1 bg-background focus:outline-none "
       />
+      <Search color={secondary} />
     </div>
   );
 }
