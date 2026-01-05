@@ -12,6 +12,8 @@ export default {
     extend: {
       colors: {
         primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        accent: "var(--accent)",
         good: "var(--good)",
         warning: "var(--warning)",
         error: "var(--error)",

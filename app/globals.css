@@ -4,7 +4,9 @@
 
 @layer base {
   :root {
-    --primary: #d3d3ff;
+    --primary: #66857F;
+    --secondary: #3E4051;
+    --accent: #41867C;
     --good: #4ade80;
     --warning: #fde047;
     --error: #ef4444;
@@ -13,7 +15,9 @@
     --foreground: #212224;
     --foreground-alt: #9ca3af;
   }.dark {
-    --primary: #d3d3ff;
+    --primary: #7A9994;
+    --secondary: #AEB0C1;
+    --accent: #79BEB4;
     --good: #4ade80;
     --warning: #fde047;
     --error: #ef4444;
