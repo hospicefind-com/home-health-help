@@ -26,6 +26,10 @@ export default {
           alt: "var(--foreground-alt)",
         },
       },
+
+      fontFamily: {
+        dongle: ["var(--font-dongle)"],
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

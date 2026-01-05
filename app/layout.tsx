@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import { Dongle } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/base-ui/navbar";
 import Providers from "@/app/providers";
@@ -20,6 +21,12 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+const dongle = Dongle({
+  weight: "400",
+  variable: "--font-dongle",
+  subsets: ["latin"],
+})
+
 
 export default function RootLayout({
   children,
@@ -28,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.className} antialiased root`}>
+      <body className={`${geistSans.className} ${dongle.className} antialiased root`}>
         <Providers>
           <Navbar />
           {children}
