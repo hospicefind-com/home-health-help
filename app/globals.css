@@ -12,9 +12,6 @@
     --background-alt: #e3e5e9;
     --foreground: #212224;
     --foreground-alt: #9ca3af;
-    /* Popover tokens for dropdowns/menus */
-    --popover: var(--background-alt);
-    --popover-foreground: var(--foreground);
   }.dark {
     --primary: #d3d3ff;
     --good: #4ade80;
@@ -24,38 +21,6 @@
     --background-alt: #424345;
     --foreground: #f2f4f7;
     --foreground-alt: #9ca3af;
-    /* Popover tokens for dropdowns/menus (dark) */
-    --popover: var(--background-alt);
-    --popover-foreground: var(--foreground);
-  }
-
-  @layer components {
-    .rainbow-text {
-      @apply bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 bg-clip-text text-transparent font-bold;
-    }
-
-    .rainbow-accent {
-      @apply relative inline-block;
-    }
-
-    .rainbow-accent::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(to right, #ef4444, #eab308, #22c55e, #3b82f6, #a855f7);
-      border-radius: 2px;
-    }
-
-    .rainbow-bg {
-      @apply bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500;
-    }
-
-    .glass-effect {
-      @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-lg;
-    }
   }
 }
 

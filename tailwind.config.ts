@@ -15,9 +15,6 @@ export default {
         good: "var(--good)",
         warning: "var(--warning)",
         error: "var(--error)",
-        // Popover colors used by dropdowns/menus
-        popover: "var(--popover)",
-        "popover-foreground": "var(--popover-foreground)",
         background: {
           DEFAULT: "var(--background)",
           alt: "var(--background-alt)",
