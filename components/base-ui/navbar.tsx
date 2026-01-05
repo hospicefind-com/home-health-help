@@ -75,9 +75,10 @@ export default function Navbar() {
         <div className="flex flex-row justify-between items-center h-16">
           <Link
             href="/"
-            className="text-xl font-bold text-primary hover:text-foreground-alt transition"
+            className="text-4xl/4 font-dongle font-bold text-primary hover:text-foreground-alt transition"
           >
-            Find Hospices
+            Find <br />
+            Hospices
           </Link>
 
           <div className="flex items-center gap-4">

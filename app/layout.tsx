@@ -25,6 +25,8 @@ const dongle = Dongle({
   weight: "400",
   variable: "--font-dongle",
   subsets: ["latin"],
+  display: "swap",
+  adjustFontFallback: false,
 })
 
 
@@ -35,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.className} ${dongle.className} antialiased root`}>
+      <body className={`${geistSans.className} ${dongle.variable} antialiased root`}>
         <Providers>
           <Navbar />
           {children}
