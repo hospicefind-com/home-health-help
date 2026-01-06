@@ -71,10 +71,11 @@ export default function HomeClient({ initialSearch, initialSort, initialScoreDat
   return (
     <div className="min-h-screen bg-background max-w-6xl mx-auto px-2 pt-2">
       <h1 className="text-6xl/9 font-dongle font-bold text-foreground">Search Hospices By Zipcode They Serve</h1>
-      <p className="text-foreground mb-4">You can compare up to 5 hospices.</p>
-      <div className="flex justify-center max-w-full gap-3 sm:flex-row flex-col">
+      <p className="text-foreground">You can compare up to 5 hospices.</p>
+      <div className="flex justify-center max-w-full gap-3 sm:flex-row flex-col pt-4 z-10 bg-background sticky top-[65px]">
         <SearchBar value={searchQuery} onSearchChange={handleSearchChange} />
         <SortDropdown selectedValue={measureCode} onSortChange={handleSortChange} loading={isLoading} />
+        <hr className="border-1 border-foreground" />
       </div>
       <HospiceCards
         page={0}

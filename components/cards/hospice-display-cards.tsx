@@ -128,10 +128,13 @@ export default function HospiceCards({ page, zip, measureCode, scoreData, onLoad
         createToast("You're already comparing this hospice");
       }
     }
+    else if (!isComparing) {
+      router.push(`/details/${ccn}`)
+    }
   }
 
   return (
-    <div id="hospice-display-box" className="max-w-4xl mx-auto px-4 py-8">
+    <div id="hospice-display-box" className="max-w-4xl p-2">
       {isLoading ? (
         <div className="grid gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
@@ -161,68 +164,47 @@ export default function HospiceCards({ page, zip, measureCode, scoreData, onLoad
             return (
               <div
                 key={ccn}
-                className={`relative bg-background border rounded-lg p-6 transition ${selected
-                  ? 'border-primary ring-2 ring-primary'
+                className={`relative bg-background border rounded-lg p-3 transition ${selected
+                  ? 'border-accent ring-2 ring-primary'
                   : 'border-foreground-alt hover:bg-background-alt hover:ring-2 hover:ring-primary'
                   } ${isComparing ? 'cursor-pointer' : ''}`}
                 onClick={isComparing ? () => toggleSelection(ccn) : undefined}
               >
                 <div className="flex items-start gap-3">
-                  {isComparing ? (
-                    <input
-                      type="checkbox"
-                      checked={selected}
-                      onChange={() => toggleSelection(ccn)}
-                      disabled={!selected && selectedCCNs.length >= 5}
-                      onClick={(e) => e.stopPropagation()}
-                      className="mt-1 h-5 w-5 rounded border-foreground-alt cursor-pointer"
-                    />
-                  ) : null}
 
-                  {/* Card Content - disable navigation during comparison mode */}
-                  {isComparing || forComparePage ? (
-                    <div className="flex-1" onClick={() => handleClickComparePage(ccn)}>
-                      <div>
-                        <h3 className="text-xl font-bold text-foreground mb-2">
-                          {facility?.general_data.facility_name}
-                        </h3>
-                        <p className="text-foreground-alt mb-3">
-                          {facility?.general_data.ownership_type}
-                        </p>
-                        <p className="text-foreground-alt mb-3">
-                          {facility?.general_data.telephone_number}
-                        </p>
-                        <p className="text-foreground-alt mb-3">
-                          {real_desc}: {facility?.sortby_medicare_scores.score}{outOfDisplay}
-                        </p>
-                      </div>
+                  <div className="flex-1" onClick={() => handleClickComparePage(ccn)}>
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground mb-2">
+                        {facility?.general_data.facility_name}
+                      </h3>
+                      <p className="text-foreground-alt mb-3">
+                        {facility?.general_data.ownership_type}
+                      </p>
+                      <p className="text-foreground-alt mb-3">
+                        {facility?.general_data.telephone_number}
+                      </p>
+                      <p className="text-foreground-alt mb-3">
+                        {real_desc}: {facility?.sortby_medicare_scores.score}{outOfDisplay}
+                      </p>
                     </div>
-                  ) : (
-                    <Link href={`/details/${ccn}`} className="flex-1">
-                      <div className="cursor-pointer">
-                        <h3 className="text-xl font-bold text-foreground mb-2">
-                          {facility?.general_data.facility_name}
-                        </h3>
-                        <p className="text-foreground-alt mb-3">
-                          {facility?.general_data.ownership_type}
-                        </p>
-                        <p className="text-foreground-alt mb-3">
-                          {facility?.general_data.telephone_number}
-                        </p>
-                        <p className="text-foreground-alt mb-3">
-                          {real_desc}: {facility?.sortby_medicare_scores.score}{outOfDisplay}
-                        </p>
-                      </div>
-                    </Link>
-                  )}
+                  </div>
                 </div>
 
+                {isComparing ? (
+                  <input
+                    type="checkbox"
+                    checked={selected}
+                    onChange={() => toggleSelection(ccn)}
+                    disabled={!selected && selectedCCNs.length >= 5}
+                    onClick={(e) => e.stopPropagation()}
+                    className="mt-1 h-5 w-5 rounded border-foreground-alt cursor-pointer accent-accent"
+                  />
+                ) : null}
                 {/* Compare trigger - themed and positioned top-right when not in comparison mode */}
                 {!isComparing && !forComparePage && (
                   <Button
-                    variant="outline"
                     size="lg"
-                    className="absolute top-4 right-4 border-2 border-foreground text-foreground hover:bg-background-alt focus-visible:ring-2 focus-visible:ring-ring dark:focus-visible:ring-primary"
+                    className="absolute top-4 right-4 bg-accent"
                     onClick={(e) => { e.stopPropagation(); setIsComparing(true); }}
                   >
                     Compare
