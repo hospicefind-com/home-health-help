@@ -84,6 +84,20 @@ export default function HomeClient({ initialSearch, initialSort, initialScoreDat
         onLoadingChange={setIsLoading}
         forComparePage={forComparePage}
       />
+      <div className="bg-secondary text-background rounded-3xl p-3 flex flex-col gap-6 items-center justify-center">
+        <div>
+          <h1 className="font-dongle font-bold text-6xl/9">Finding Hospices is Hard</h1>
+          <p className="mb-6">Hospice Find is here to help! Easily search and compare all hospices that are available to you.</p>
+        </div>
+        <div>
+          <h1 className="font-dongle font-bold text-6xl/9">Official Medicare Data</h1>
+          <p className="mb-6">Data is taken by Centers for Medicare & Medicaid Services (CMS). Hospice Find is not associated with the US government.</p>
+        </div>
+        <div>
+          <h1 className="font-dongle font-bold text-6xl/9">Compare Data</h1>
+          <p>Compare a hospice’s data against the national averages or the averages for your specific state. Compare hospice’s data directly to each other.</p>
+        </div>
+      </div>
     </div>
   );
 }
