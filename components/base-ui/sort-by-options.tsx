@@ -89,7 +89,14 @@ export default function SortDropdown({ selectedValue, onSortChange, loading }: S
             <span className="truncate text-left flex-1">
               {getSelectedText()}
             </span>
-            <ChevronDown className="shrink-0" />
+            {loading ? (
+              <span
+                aria-label="Loading"
+                className="h-5 w-5 animate-spin rounded-full border-2 border-foreground-alt border-t-primary shrink-0"
+              />
+            ) : (
+              <ChevronDown className="shrink-0" />
+            )}
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent
@@ -167,12 +174,6 @@ export default function SortDropdown({ selectedValue, onSortChange, loading }: S
         </DropdownMenuContent>
       </DropdownMenu>
 
-      {loading && (
-        <span
-          aria-label="Loading"
-          className="h-5 w-5 animate-spin rounded-full border-2 border-foreground-alt border-t-primary shrink-0"
-        />
-      )}
     </div>
   );
 }

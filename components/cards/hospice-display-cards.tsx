@@ -170,46 +170,45 @@ export default function HospiceCards({ page, zip, measureCode, scoreData, onLoad
                   } ${isComparing ? 'cursor-pointer' : ''}`}
                 onClick={isComparing ? () => toggleSelection(ccn) : undefined}
               >
-                <div className="flex items-start gap-3">
-
-                  <div className="flex-1" onClick={() => handleClickComparePage(ccn)}>
-                    <div>
-                      <h3 className="text-xl font-bold text-foreground mb-2">
-                        {facility?.general_data.facility_name}
-                      </h3>
-                      <p className="text-foreground-alt mb-3">
-                        {facility?.general_data.ownership_type}
-                      </p>
-                      <p className="text-foreground-alt mb-3">
-                        {facility?.general_data.telephone_number}
-                      </p>
-                      <p className="text-foreground-alt mb-3">
-                        {real_desc}: {facility?.sortby_medicare_scores.score}{outOfDisplay}
-                      </p>
-                    </div>
+                <h3 className="text-5xl/9 font-bold text-foreground mb-2 font-dongle">
+                  {facility?.general_data.facility_name}
+                </h3>
+                <div className="flex flex-row flex-1 items-end" onClick={() => handleClickComparePage(ccn)}>
+                  <div className="flex-1">
+                    <p className="mb-2">
+                      {facility?.general_data.ownership_type}
+                    </p>
+                    <p className="mb-2">
+                      {facility?.general_data.telephone_number}
+                    </p>
+                    <p className="mb-2">
+                      {real_desc}: {facility?.sortby_medicare_scores.score}{outOfDisplay}
+                    </p>
+                  </div>
+                  <div>
+                    {isComparing ? (
+                      <input
+                        type="checkbox"
+                        checked={selected}
+                        onChange={() => toggleSelection(ccn)}
+                        disabled={!selected && selectedCCNs.length >= 5}
+                        onClick={(e) => e.stopPropagation()}
+                        className="mt-1 h-5 w-5 rounded border-foreground-alt cursor-pointer accent-accent"
+                      />
+                    ) : null}
+                    {/* Compare trigger - themed and positioned top-right when not in comparison mode */}
+                    {!isComparing && !forComparePage && (
+                      <Button
+                        size="lg"
+                        className="bg-accent"
+                        onClick={(e) => { e.stopPropagation(); setIsComparing(true); toggleSelection(ccn) }}
+                      >
+                        Compare
+                      </Button>
+                    )}
                   </div>
                 </div>
 
-                {isComparing ? (
-                  <input
-                    type="checkbox"
-                    checked={selected}
-                    onChange={() => toggleSelection(ccn)}
-                    disabled={!selected && selectedCCNs.length >= 5}
-                    onClick={(e) => e.stopPropagation()}
-                    className="mt-1 h-5 w-5 rounded border-foreground-alt cursor-pointer accent-accent"
-                  />
-                ) : null}
-                {/* Compare trigger - themed and positioned top-right when not in comparison mode */}
-                {!isComparing && !forComparePage && (
-                  <Button
-                    size="lg"
-                    className="absolute top-4 right-4 bg-accent"
-                    onClick={(e) => { e.stopPropagation(); setIsComparing(true); }}
-                  >
-                    Compare
-                  </Button>
-                )}
               </div>
             );
           })}
@@ -225,7 +224,7 @@ export default function HospiceCards({ page, zip, measureCode, scoreData, onLoad
             {selectedCCNs.length} selected
           </span>
           <button
-            onClick={() => setSelectedCCNs([])}
+            onClick={() => { setSelectedCCNs([]); setIsComparing(false) }}
             className="text-sm underline hover:no-underline"
           >
             Clear
