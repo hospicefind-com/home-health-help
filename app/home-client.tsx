@@ -84,7 +84,7 @@ export default function HomeClient({ initialSearch, initialSort, initialScoreDat
         onLoadingChange={setIsLoading}
         forComparePage={forComparePage}
       />
-      <div className="bg-secondary text-background rounded-3xl p-3 flex flex-col gap-6 items-center justify-center">
+      <div className="bg-secondary text-background rounded-3xl p-3 flex flex-col gap-6 items-left justify-center">
         <div>
           <h1 className="font-dongle font-bold text-6xl/9">Finding Hospices is Hard</h1>
           <p className="mb-6">Hospice Find is here to help! Easily search and compare all hospices that are available to you.</p>

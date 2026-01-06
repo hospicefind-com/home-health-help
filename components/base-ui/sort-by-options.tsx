@@ -3,7 +3,6 @@
 import { GetCodeDetails } from "@/lib/hospice-data/get-code-details";
 import { Code } from "@/lib/types";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/base-ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/base-ui/dropdown-menu";
-import { ChevronDown, Check } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type SortDropdownProps = {
@@ -84,36 +83,27 @@ export default function SortDropdown({ selectedValue, onSortChange, loading }: S
     <div className="flex items-center gap-2">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant="outline"
-            disabled={loading}
-            className="w-full sm:w-auto min-w-[200px] justify-between gap-2"
+          <div
+            className="w-full sm:w-auto min-w-[200px] items-center justify-between gap-2 bg-primary rounded-full flex px-4 py-3 text-background"
           >
             <span className="truncate text-left flex-1">
               {getSelectedText()}
             </span>
-            <ChevronDown className="h-4 w-4 opacity-50 shrink-0" />
-          </Button>
+            <ChevronDown className="shrink-0" />
+          </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent
-          align="end"
-          className="w-[320px] sm:w-[400px] max-h-[400px] overflow-y-auto"
+          className="w-[calc(100vw-16px)] mx-2 px-1 min-w-[200px] max-h-[400px] overflow-y-auto bg-primary text-background border-none rounded-3xl"
         >
-          <DropdownMenuLabel className="text-xs text-muted-foreground">
+          <DropdownMenuLabel className="text-xs font-bold">
             Sort by
           </DropdownMenuLabel>
 
           {/* Default Option */}
           <DropdownMenuItem
             onClick={() => handleSelection("")}
-            className="cursor-pointer"
+            className={cn("cursor-pointer rounded-full", selectedValue === "" ? "bg-background text-foreground" : "bg-none text-background")}
           >
-            <Check
-              className={cn(
-                "mr-2 h-4 w-4",
-                selectedValue === "" ? "opacity-100" : "opacity-0"
-              )}
-            />
             <span>Alphabetical Order</span>
           </DropdownMenuItem>
 
@@ -122,21 +112,15 @@ export default function SortDropdown({ selectedValue, onSortChange, loading }: S
           {/* CAHPS Category */}
           {categorizedCodes.cahps.length > 0 && (
             <>
-              <DropdownMenuLabel className="text-xs font-semibold text-foreground">
+              <DropdownMenuLabel className="text-xs font-bold">
                 CAHPS (Patient Experience)
               </DropdownMenuLabel>
               {categorizedCodes.cahps.map((option) => (
                 <DropdownMenuItem
                   key={option.measure_code}
                   onClick={() => handleSelection(option.measure_code)}
-                  className="cursor-pointer pl-8"
+                  className={cn("cursor-pointer rounded-full", selectedValue === option.measure_code ? "bg-background text-foreground" : "bg-none text-background")}
                 >
-                  <Check
-                    className={cn(
-                      "mr-2 h-4 w-4 absolute left-2",
-                      selectedValue === option.measure_code ? "opacity-100" : "opacity-0"
-                    )}
-                  />
                   <span className="text-sm">{option.real_desc}</span>
                 </DropdownMenuItem>
               ))}
@@ -147,21 +131,15 @@ export default function SortDropdown({ selectedValue, onSortChange, loading }: S
           {/* HCI Category */}
           {categorizedCodes.hci.length > 0 && (
             <>
-              <DropdownMenuLabel className="text-xs font-semibold text-foreground">
+              <DropdownMenuLabel className="text-xs font-bold">
                 HCI (Hospice Care Index)
               </DropdownMenuLabel>
               {categorizedCodes.hci.map((option) => (
                 <DropdownMenuItem
                   key={option.measure_code}
                   onClick={() => handleSelection(option.measure_code)}
-                  className="cursor-pointer pl-8"
+                  className={cn("cursor-pointer rounded-full", selectedValue === option.measure_code ? "bg-background text-foreground" : "bg-none text-background")}
                 >
-                  <Check
-                    className={cn(
-                      "mr-2 h-4 w-4 absolute left-2",
-                      selectedValue === option.measure_code ? "opacity-100" : "opacity-0"
-                    )}
-                  />
                   <span className="text-sm">{option.real_desc}</span>
                 </DropdownMenuItem>
               ))}
@@ -172,21 +150,15 @@ export default function SortDropdown({ selectedValue, onSortChange, loading }: S
           {/* General Metrics Category */}
           {categorizedCodes.generalMetric.length > 0 && (
             <>
-              <DropdownMenuLabel className="text-xs font-semibold text-foreground">
+              <DropdownMenuLabel className="text-xs font-bold">
                 General Metrics
               </DropdownMenuLabel>
               {categorizedCodes.generalMetric.map((option) => (
                 <DropdownMenuItem
                   key={option.measure_code}
                   onClick={() => handleSelection(option.measure_code)}
-                  className="cursor-pointer pl-8"
+                  className={cn("cursor-pointer rounded-full", selectedValue === option.measure_code ? "bg-background text-foreground" : "bg-none text-background")}
                 >
-                  <Check
-                    className={cn(
-                      "mr-2 h-4 w-4 absolute left-2",
-                      selectedValue === option.measure_code ? "opacity-100" : "opacity-0"
-                    )}
-                  />
                   <span className="text-sm">{option.real_desc}</span>
                 </DropdownMenuItem>
               ))}
