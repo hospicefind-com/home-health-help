@@ -218,24 +218,24 @@ export default function HospiceCards({ page, zip, measureCode, scoreData, onLoad
       {/* Floating Compare Bar */}
       {selectedCCNs.length > 0 && (
         <div
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground rounded-full shadow-lg px-6 py-3 flex items-center justify-center gap-4 z-50 w-full sm:w-max sm:max-w-[300px]"
+          className="grid grid-cols-3 items-center fixed bottom-2 left-1/2 -translate-x-1/2 bg-secondary text-primary-foreground rounded-full shadow-lg p-2 gap-4 z-50 w-full sm:w-max sm:max-w-[300px]"
         >
-          <span className="font-semibold">
-            {selectedCCNs.length} selected
-          </span>
           <button
             onClick={() => { setSelectedCCNs([]); setIsComparing(false) }}
-            className="text-sm underline hover:no-underline"
+            className="text-sm text-background underline hover:no-underline"
           >
             Clear
           </button>
           <button
             onClick={handleCompare}
             disabled={selectedCCNs.length < 2}
-            className="bg-background text-foreground px-4 py-2 rounded-full font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-background-alt transition"
+            className="bg-background text-foreground px-6 py-4 rounded-full font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-background-alt transition"
           >
             Compare
           </button>
+          <span className="font-semibold text-background">
+            {selectedCCNs.length} selected
+          </span>
         </div>
       )}
     </div>
