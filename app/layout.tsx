@@ -62,8 +62,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning dir="ltr">
+      <head />
       <body className={`${geistSans.className} antialiased root`}>
+        {/* Serwist goes outside your internal app providers */}
         <Providers>
           <Navbar />
           {children}
