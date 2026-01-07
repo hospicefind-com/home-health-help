@@ -165,8 +165,8 @@ export default function HospiceCards({ page, zip, measureCode, scoreData, onLoad
               <div
                 key={ccn}
                 className={`relative bg-background border rounded-lg p-3 transition ${selected
-                  ? 'border-accent ring-2 ring-primary'
-                  : 'border-foreground-alt hover:bg-background-alt hover:ring-2 hover:ring-primary'
+                  ? 'border-accent ring-2 ring-accent'
+                  : 'border-foreground-alt hover:bg-background-alt hover:ring-2 hover:ring-accent'
                   } ${isComparing ? 'cursor-pointer' : ''}`}
                 onClick={isComparing ? () => toggleSelection(ccn) : undefined}
               >
@@ -222,7 +222,7 @@ export default function HospiceCards({ page, zip, measureCode, scoreData, onLoad
         >
           <button
             onClick={() => { setSelectedCCNs([]); setIsComparing(false) }}
-            className="text-sm text-background underline hover:no-underline"
+            className="text-background underline hover:no-underline"
           >
             Clear
           </button>

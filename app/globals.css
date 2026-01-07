@@ -7,9 +7,9 @@
     --primary: #66857F;
     --secondary: #3E4051;
     --accent: #41867C;
-    --good: #4ade80;
-    --warning: #fde047;
-    --error: #ef4444;
+    --good: ##40C16F;
+    --warning: ##DAA54A;
+    --error: ##C85A52;
     --background: #f2f4f7;
     --background-alt: #e3e5e9;
     --foreground: #212224;
@@ -18,9 +18,9 @@
     --primary: #7A9994;
     --secondary: #AEB0C1;
     --accent: #79BEB4;
-    --good: #4ade80;
-    --warning: #fde047;
-    --error: #ef4444;
+    --good: ##40C16F;
+    --warning: ##DAA54A;
+    --error: ##C85A52;
     --background: #212224;
     --background-alt: #424345;
     --foreground: #f2f4f7;
