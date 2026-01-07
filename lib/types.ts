@@ -116,31 +116,31 @@ export interface RawCMSRecord {
 
 // Type for the raw National Data API response
 export interface RawNationalDataRecord {
-  "CMS Certification Number (CCN)": string;
-  "Measure Code": string;
-  "Measure Name": string;
-  "Score": string;
-  "Footnote": string;
-  "Date": string;
+  "cms_certification_number_ccn": string;
+  "measure_code": string;
+  "measure_name": string;
+  "score": string;
+  "footnote": string;
+  "date": string;
 }
 
 // Type for the raw National CAHPS API response
 export interface RawNationalCahpsRecord {
-  "Measure Code": string;
-  "Measure Name": string;
-  "Score": string;
-  "Footnote": string;
-  "Date": string;
+  "measure_code": string;
+  "measure_name": string;
+  "score": string;
+  "footnote": string;
+  "date": string;
 }
 
 // Type for the raw State response
 export interface RawStateDataRecord {
-  "State": string;
-  "Measure Code": string;
-  "Measure Name": string;
-  "Score": string;
-  "Footnote": string;
-  "Date": string;
+  "state": string;
+  "measure_code": string;
+  "measure_name": string;
+  "score": string;
+  "footnote": string;
+  "date": string;
 }
 
 // 1. The individual review object

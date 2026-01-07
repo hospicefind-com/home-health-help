@@ -1,6 +1,6 @@
 {
-  "name": "My Awesome PWA app",
-  "short_name": "PWA App",
+  "name": "Hospicefind PWA Application",
+  "short_name": "Hospicefind PWA App",
   "icons": [
     {
       "src": "/icons/android-chrome-192x192.png",
@@ -20,5 +20,3 @@
   "display": "standalone",
   "orientation": "portrait"
 }
-
-
