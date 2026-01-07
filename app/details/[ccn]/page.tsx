@@ -9,21 +9,25 @@ interface DetailPageProps {
   params: Promise<{
     ccn: string;
   }>
+  searchParams: Promise<{ view?: string }>;
 }
 
-export default async function DetailPage({ params }: DetailPageProps) {
+export default async function DetailPage({ params, searchParams }: DetailPageProps) {
   const { ccn } = await params;
+  const { view } = await searchParams;
   const data: EnrichedProviderData | null = await getEnrichedProviderData(ccn);
 
   if (!data) {
     return <div className="container mx-auto max-w-4xl px-4 py-8">Failed to load provider data</div>;
   }
 
+  const currentView = view || "Overview";
+
   return (
-    <div className="max-w-screen-xl mx-auto px-2 pt-4">
+    <div className="max-w-screen-xl mx-auto px-2">
 
       {/* Provider Header */}
-      <h1 className="text-6xl/9 font-dongle font-bold tracking-tight">{data.facilityName}</h1>
+      <h1 className="text-6xl/9 font-dongle font-bold tracking-tight sticky top-[65px] pt-4 bg-background">{data.facilityName}</h1>
 
       {/* Contact Information Section */}
       <section className="">
@@ -41,7 +45,13 @@ export default async function DetailPage({ params }: DetailPageProps) {
         </div>
       </section>
 
-      <Dropdown />
+      <div className="sticky top-[153px]">
+        <Dropdown />
+      </div>
+
+      {currentView === "Overview" && <Overview data={data} />}
+      {currentView === "State Average" && <StateAvg data={data} />}
+      {currentView === "National Average" && <NationalAvg data={data} />}
 
     </div >
   )
