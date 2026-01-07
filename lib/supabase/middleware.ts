@@ -59,7 +59,9 @@ export async function updateSession(request: NextRequest) {
     !request.nextUrl.pathname.startsWith("/compare") &&
     !request.nextUrl.pathname.startsWith("/auth/confirm") &&
     !request.nextUrl.pathname.startsWith("/manifest.json") &&
-    !request.nextUrl.pathname.startsWith("/serwist/sw.js")
+    !request.nextUrl.pathname.startsWith("/serwist/sw.js") &&
+    !request.nextUrl.pathname.startsWith("/sw.js") &&
+    !request.nextUrl.pathname.startsWith("/offline")
   ) {
     // no user, potentially respond by redirecting the user to the login page
     const url = request.nextUrl.clone();
