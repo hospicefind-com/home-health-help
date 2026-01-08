@@ -3,6 +3,7 @@
 /// <reference lib="webworker" />
 import {
   NetworkFirst,
+  ExpirationPlugin,
 } from "serwist";
 import { defaultCache } from "@serwist/turbopack/worker";
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
@@ -23,7 +24,11 @@ declare const self: ServiceWorkerGlobalScope;
 const customStrategies = [
   {
     // Fixes the "implicitly has an any type" error by typing the parameter
-    matcher: ({ request }: { request: Request }) => request.destination === "document",
+    matcher: ({ request }: { request: Request }) => {
+      const isDocument = request.destination === "document";
+      const isRsc = request.headers.get("RSC") === "1";
+      return isDocument || isRsc;
+    },
     handler: new NetworkFirst({
       cacheName: "pages-runtime-cache",
       plugins: [
@@ -34,6 +39,11 @@ const customStrategies = [
             return null;
           },
         },
+
+        new ExpirationPlugin({
+          maxEntries: 50, // Keep the last 50 visited pages
+          maxAgeSeconds: 7 * 24 * 60 * 60, // Clean up after a week
+        }),
       ],
     }),
   },
