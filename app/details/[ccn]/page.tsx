@@ -27,7 +27,7 @@ export default async function DetailPage({ params, searchParams }: DetailPagePro
     <div className="max-w-screen-xl mx-auto px-2">
 
       {/* Provider Header */}
-      <h1 className="text-6xl/9 font-dongle font-bold tracking-tight sticky top-[65px] pt-4 bg-background">{data.facilityName}</h1>
+      <h1 className="text-6xl/9 font-dongle font-bold tracking-tight pt-4 bg-background">{data.facilityName}</h1>
 
       {/* Contact Information Section */}
       <section className="">
@@ -45,7 +45,7 @@ export default async function DetailPage({ params, searchParams }: DetailPagePro
         </div>
       </section>
 
-      <div className="sticky top-[153px]">
+      <div className="sticky top-[65px]">
         <Dropdown />
       </div>
 

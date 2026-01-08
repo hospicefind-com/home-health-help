@@ -168,12 +168,12 @@ export default function HospiceCards({ page, zip, measureCode, scoreData, onLoad
                   ? 'border-accent ring-2 ring-accent'
                   : 'border-foreground-alt hover:bg-background-alt hover:ring-2 hover:ring-accent'
                   } ${isComparing ? 'cursor-pointer' : ''}`}
-                onClick={isComparing ? () => toggleSelection(ccn) : undefined}
+                onClick={isComparing ? () => toggleSelection(ccn) : () => handleClickComparePage(ccn)}
               >
                 <h3 className="text-5xl/9 font-bold text-foreground mb-2 font-dongle">
                   {facility?.general_data.facility_name}
                 </h3>
-                <div className="flex flex-row flex-1 items-end" onClick={() => handleClickComparePage(ccn)}>
+                <div className="flex flex-row flex-1 items-end">
                   <div className="flex-1">
                     <p className="mb-2">
                       {facility?.general_data.ownership_type}
