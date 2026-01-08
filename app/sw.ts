@@ -23,10 +23,13 @@ declare const self: ServiceWorkerGlobalScope;
 
 const customStrategies = [
   {
-    // Fixes the "implicitly has an any type" error by typing the parameter
     matcher: ({ request }: { request: Request }) => {
-      const isDocument = request.destination === "document"
+      const isDocument = request.destination === "document";
       const isRsc = request.headers.get("RSC") === "1";
+
+      if (isDocument || isRsc) {
+        console.log(`[SW] Intercepting: ${request.url} | Type: ${isDocument ? 'HTML' : 'RSC'}`);
+      }
       return isDocument || isRsc;
     },
     handler: new NetworkFirst({
@@ -61,7 +64,7 @@ const serwist = new Serwist({
   fallbacks: {
     entries: [
       {
-        url: "/offline",
+        url: "/",
         matcher({ request }) {
           return request.destination === "document";
         },
