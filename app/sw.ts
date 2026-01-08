@@ -25,7 +25,7 @@ const customStrategies = [
   {
     // Fixes the "implicitly has an any type" error by typing the parameter
     matcher: ({ request }: { request: Request }) => {
-      const isDocument = request.destination === "document";
+      const isDocument = request.destination === "document"
       const isRsc = request.headers.get("RSC") === "1";
       return isDocument || isRsc;
     },
