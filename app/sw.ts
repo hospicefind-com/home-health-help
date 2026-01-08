@@ -1,6 +1,9 @@
 /// <reference no-default-lib="true" />
 /// <reference lib="esnext" />
 /// <reference lib="webworker" />
+import {
+  NetworkFirst,
+} from "serwist";
 import { defaultCache } from "@serwist/turbopack/worker";
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
 import { Serwist } from "serwist";
@@ -17,12 +20,31 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 
+const customStrategies = [
+  {
+    // Fixes the "implicitly has an any type" error by typing the parameter
+    matcher: ({ request }: { request: Request }) => request.destination === "document",
+    handler: new NetworkFirst({
+      cacheName: "pages-runtime-cache",
+      plugins: [
+        {
+          // Optional: ensuring we don't cache error pages
+          cacheWillUpdate: async ({ response }) => {
+            if (response && response.status === 200) return response;
+            return null;
+          },
+        },
+      ],
+    }),
+  },
+];
+
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
-  runtimeCaching: defaultCache,
+  runtimeCaching: [...customStrategies, ...defaultCache],
   precacheOptions: {
     cleanupOutdatedCaches: true,
   },
