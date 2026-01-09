@@ -1,7 +1,6 @@
 "use client"
 
 import { Menu } from "@base-ui-components/react";
-import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 

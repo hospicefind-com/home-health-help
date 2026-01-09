@@ -6,6 +6,7 @@ import SortDropdown from "@/components/base-ui/sort-by-options";
 import { Code } from "@/lib/types";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import SortByDropdown from "@/components/base-ui/sortby-dropdown";
 
 type Props = {
   initialSearch: string;
