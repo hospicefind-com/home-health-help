@@ -7,7 +7,7 @@ import { createSerwistRoute } from "@serwist/turbopack";
 const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout ?? crypto.randomUUID();
 
 export const { dynamic, dynamicParams, revalidate, generateStaticParams, GET } = createSerwistRoute({
-  additionalPrecacheEntries: [{ url: "/", revision }],
+  additionalPrecacheEntries: [{ url: "/offline", revision }],
   swSrc: "app/sw.ts",
   // Copy relevant Next.js configuration (assetPrefix,
   // basePath, distDir) over if you've changed them.
