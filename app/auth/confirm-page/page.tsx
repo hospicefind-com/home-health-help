@@ -1,4 +1,6 @@
-'use client';
+/// <reference lib="dom" />
+// We need to use this little shebang at the top because that's how it's able to see the library/file that holds 'window'
+'use client'
 
 import { useEffect, useState, Suspense } from 'react';
 import { createClient } from '@/lib/supabase/client';
