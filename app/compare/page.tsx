@@ -1,5 +1,6 @@
 import CompareAccordion from "@/components/compare/compareAccordion";
 import { getCombinedProviderData } from "@/lib/hospice-data/provider-data";
+import { getAllCodes } from "@/lib/hospice-data/get-code-details";
 
 // This allows Next.js to access searchParams in Server Components
 export default async function ComparePage({
@@ -9,6 +10,7 @@ export default async function ComparePage({
 }) {
   const params = await searchParams;
   const ccns = Array.isArray(params.ccn) ? params.ccn : params.ccn ? [params.ccn] : [];
+  const codes = await getAllCodes();
 
   const add = ccns.length < 5;
 
@@ -24,7 +26,7 @@ export default async function ComparePage({
 
   return (
     <div className="p-2">
-      <CompareAccordion addable={add} data={results} />
+      <CompareAccordion addable={add} codes={codes} data={results} />
     </div>
   );
 }
