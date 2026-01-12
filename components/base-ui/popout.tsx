@@ -1,15 +1,20 @@
 import { Popover } from "@base-ui-components/react";
-import React from "react";
+import React, { useState } from "react";
 
 interface popoutProps {
   description: string,
   children: React.ReactNode,
 }
 
-export default function Popout({ description, children }: popoutProps){
+export default function Popout({ description, children }: popoutProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <Popover.Root openOnHover={true}>
-      <Popover.Trigger>
+    <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
+      <Popover.Trigger
+        onMouseEnter={() => setIsOpen(true)}
+        onMouseLeave={() => setIsOpen(false)}
+      >
         {children}
       </Popover.Trigger>
       <Popover.Portal>
