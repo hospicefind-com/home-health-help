@@ -48,6 +48,9 @@ FROM base
 # Copy built application
 COPY --from=build /app /app
 
+# expose on 0.0.0.0 bc that's what fly.io needs
+ENV HOSTNAME="0.0.0.0"
+
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
 CMD [ "npm", "run", "start" ]
