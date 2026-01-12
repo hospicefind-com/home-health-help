@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/base-ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
+import { NavArrowDown } from "iconoir-react";
 import { cn } from "@/lib/utils";
 
 type SortDropdownProps = {
@@ -95,7 +95,7 @@ export default function SortDropdown({ selectedValue, onSortChange, loading }: S
                 className="h-5 w-5 animate-spin rounded-full border-2 border-foreground-alt border-t-primary shrink-0"
               />
             ) : (
-              <ChevronDown className="shrink-0" />
+              <NavArrowDown className="shrink-0" />
             )}
           </div>
         </DropdownMenuTrigger>

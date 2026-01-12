@@ -1,7 +1,7 @@
 "use client"
 
 import { Menu } from "@base-ui-components/react";
-import { ChevronDown } from "lucide-react";
+import { NavArrowDown } from "iconoir-react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 export default function Dropdown() {
@@ -25,7 +25,7 @@ export default function Dropdown() {
           <div>
             {selectedText}
           </div>
-          <ChevronDown />
+          <NavArrowDown />
         </Menu.Trigger>
         <Menu.Portal>
           <Menu.Positioner>

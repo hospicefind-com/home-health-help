@@ -1,11 +1,11 @@
 "use client"
 
 import { Menu } from "@base-ui-components/react"
-import { ChevronDown } from "lucide-react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { GetCodeDetails } from "@/lib/hospice-data/get-code-details";
 import { Code } from "@/lib/types";
 import { useEffect, useState } from "react";
+import { NavArrowDown } from "iconoir-react";
 
 type CategorizedCodes = {
   cahps: Code[];
@@ -64,7 +64,7 @@ export default function SortByDropdown() {
           <div>
             {selectedText}
           </div>
-          <ChevronDown />
+          <NavArrowDown />
         </Menu.Trigger>
         <Menu.Portal>
           <Menu.Positioner>
