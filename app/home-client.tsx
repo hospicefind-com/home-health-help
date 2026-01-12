@@ -16,8 +16,7 @@ type Props = {
 };
 
 export default function HomeClient({ initialSearch, initialSort, initialScoreData, forComparePage = false }: Props) {
-  const router = useRouter();
-  const pathname = usePathname();
+  const router = useRouter(); const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState(initialSearch || "");

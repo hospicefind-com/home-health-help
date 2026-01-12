@@ -1,12 +1,14 @@
 import { getAllCodes } from "@/lib/hospice-data/get-code-details";
+import { ProviderData } from "@/lib/types";
 import { Accordion } from "@base-ui-components/react";
-import { NavArrowDown } from "iconoir-react";
+import { MinusCircle, NavArrowDown, PlusCircle } from "iconoir-react";
 
 type CompareAccordionProps = {
   addable: boolean,
+  data?: (ProviderData | null)[],
 }
 
-export default async function CompareAccordion({ addable }: CompareAccordionProps) {
+export default async function CompareAccordion({ addable, data }: CompareAccordionProps) {
   const codes = await getAllCodes();
 
   codes?.sort((a, b) => {
@@ -28,7 +30,23 @@ export default async function CompareAccordion({ addable }: CompareAccordionProp
 
           {/* Accordion Body */}
           <Accordion.Panel>
-            Stupid chud
+            {data?.map((hospice) => (
+              <div key={hospice?.ccn} className="flex flex-row p-3 border-b border-foreground text-xl">
+                <button className="mr-3">
+                  <MinusCircle />
+                </button>
+                <span className="flex-1">{hospice?.facilityName}:</span>
+                <span className="self-end">{hospice?.measures.find(e => e.measureCode == code.measure_code)?.score}</span>
+              </div>
+            ))}
+
+            {/* Add Hospice */}
+            {addable && (
+              <div className="flex flex-row justify-center items-center bg-background-alt text-xl p-3">
+                <span>Add Hospice</span>
+                <PlusCircle className="ml-3" />
+              </div>
+            )}
           </Accordion.Panel>
 
         </Accordion.Item>
