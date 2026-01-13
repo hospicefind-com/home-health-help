@@ -9,7 +9,7 @@ interface CategoryCardProps {
 
 export default function CategoryCard({ title, measures, compare }: CategoryCardProps) {
   return (
-    <div className="bg-background text-forground">
+    <div className="bg-background text-forground p-1">
       <h1 className="font-bold text-lg">{title}</h1>
       {measures.map((measure, index) => (
         <article

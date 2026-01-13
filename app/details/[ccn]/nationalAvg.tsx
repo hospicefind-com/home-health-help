@@ -8,7 +8,7 @@ export default function NationalAvg({ data }: { data: EnrichedProviderData }) {
       {/* Quality Measures Section */}
       <section className="bg-background text-foreground mt-2">
         {data.measures.length > 0 ? (
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid bg-foreground gap-[1px] md:grid-cols-2">
             <CategoryCard title="Family/Caregiver Experience" measures={
               data.measures.filter((measure) => measure.family_caregiver_experience)
             } compare="nationalAverage" />
@@ -25,6 +25,7 @@ export default function NationalAvg({ data }: { data: EnrichedProviderData }) {
                 !measure.quality_patient_care
               )
             } compare="nationalAverage" />
+            <div className="bg-background"></div>
           </div>
         ) : (
           <p className="text-sm text-foreground-alt italic">No quality measures available</p>

@@ -21,7 +21,7 @@ export default function Dropdown() {
   return (
     <div className="bg-background pt-4">
       <Menu.Root>
-        <Menu.Trigger className="w-full min-w-[200px] items-center justify-between gap-2 bg-primary rounded-3xl flex p-3 text-background data-[popup-open]:rounded-b-none">
+        <Menu.Trigger className="w-full min-w-[200px] items-center justify-between gap-2 bg-primary rounded-3xl flex p-3 text-background data-[popup-open]:rounded-b-none sm:data-[popup-open]:rounded-b-3xl">
           <div>
             {selectedText}
           </div>
@@ -29,7 +29,7 @@ export default function Dropdown() {
         </Menu.Trigger>
         <Menu.Portal>
           <Menu.Positioner>
-            <Menu.Popup className="bg-primary text-background w-[calc(100vw-16px)] rounded-b-3xl px-1 pb-1">
+            <Menu.Popup className="bg-primary text-background w-[calc(100vw-16px)] rounded-b-3xl px-1 pb-1 sm:rounded-3xl sm:mt-1 sm:pt-1 sm:max-w-lg">
               <Menu.RadioGroup value={selectedText} onValueChange={handleValueChange}>
                 <Menu.RadioItem closeOnClick value="Overview"
                   className="p-3 rounded-3xl data-[checked]:bg-background data-[checked]:text-foreground"

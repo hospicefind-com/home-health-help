@@ -14,7 +14,7 @@ export default function Overview({ data }: { data: EnrichedProviderData }) {
       {/* Quality Measures Section */}
       <section className="bg-background text-foreground mt-2">
         {data.measures.length > 0 ? (
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid bg-foreground gap-[1px] md:grid-cols-2">
             <CategoryCard title="Conditions treated" measures={
               data.measures
                 .filter((measure) => measure.conditions_treated)
