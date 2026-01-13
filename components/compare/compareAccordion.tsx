@@ -25,7 +25,13 @@ export default function CompareAccordion({ addable, codes, data }: CompareAccord
 
     newParams.delete('ccn', ccn);
 
-    router.replace(`${pathname}?${newParams.toString()}`);
+    router.replace(`${pathname}?${newParams.toString()}`, { scroll: false });
+  }
+
+  function addCCN() {
+    const params = new URLSearchParams(searchParams.toString());
+
+    router.push(`compare/add?${params.toString()}`);
   }
 
   return (
@@ -55,7 +61,7 @@ export default function CompareAccordion({ addable, codes, data }: CompareAccord
 
             {/* Add Hospice */}
             {addable && (
-              <button className="flex flex-row justify-center items-center bg-background-alt text-xl p-3 w-full">
+              <button onClick={() => addCCN()} className="flex flex-row justify-center items-center bg-background-alt text-xl p-3 w-full">
                 <span>Add Hospice</span>
                 <PlusCircle className="ml-3" />
               </button>
