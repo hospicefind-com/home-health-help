@@ -35,9 +35,9 @@ export default function CompareAccordion({ addable, codes, data }: CompareAccord
   }
 
   return (
-    <Accordion.Root>
+    <Accordion.Root className="grid max-w-6xl">
       {codes.map((code) => (
-        <Accordion.Item key={code.id} className="mb-3">
+        <Accordion.Item key={code.id} className="mb-3 md:mx-3">
 
           {/* Accordion Head */}
           <Accordion.Trigger className="bg-primary text-background w-full font-dongle text-4xl/7 text-left p-3 flex flex-row justify-center items-center">

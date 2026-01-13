@@ -24,7 +24,7 @@ export default async function ComparePage({
   })
 
   return (
-    <div className="p-2">
+    <div className="p-2 flex justify-center">
       <CompareAccordion addable={add} codes={codes} data={results} />
     </div>
   );

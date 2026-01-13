@@ -88,7 +88,7 @@ export default function HospiceCards({ page, zip, measureCode, scoreData, onLoad
 
   // This redirects to the compare endpoint with the CCN's listed in the search params
   const handleCompare = () => {
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(searchParams.toString());
     selectedCCNs.forEach(ccn => params.append('ccn', ccn));
     router.push(`/compare?${params.toString()}`);
   };
@@ -218,7 +218,7 @@ export default function HospiceCards({ page, zip, measureCode, scoreData, onLoad
       {/* Floating Compare Bar */}
       {selectedCCNs.length > 0 && (
         <div
-          className="grid grid-cols-3 items-center fixed bottom-2 left-1/2 -translate-x-1/2 bg-secondary text-primary-foreground rounded-full shadow-lg p-2 gap-4 z-50 w-full sm:w-max sm:max-w-[300px]"
+          className="grid grid-cols-3 items-center fixed bottom-2 left-1/2 -translate-x-1/2 bg-secondary text-primary-foreground rounded-full shadow-lg p-2 gap-4 z-50 w-full sm:w-max sm:max-w-[400px]"
         >
           <button
             onClick={() => { setSelectedCCNs([]); setIsComparing(false) }}
