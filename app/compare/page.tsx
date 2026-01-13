@@ -1,4 +1,4 @@
-import CompareAccordion from "@/components/compare/compareAccordion";
+import CompareAccordion from "./compareAccordion";
 import { getCombinedProviderData } from "@/lib/hospice-data/provider-data";
 import { getAllCodes } from "@/lib/hospice-data/get-code-details";
 
@@ -11,7 +11,6 @@ export default async function ComparePage({
   const params = await searchParams;
   const ccns = Array.isArray(params.ccn) ? params.ccn : params.ccn ? [params.ccn] : [];
   const codes = await getAllCodes();
-
   const add = ccns.length < 5;
 
   const results = await Promise.all(
