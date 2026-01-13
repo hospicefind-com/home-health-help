@@ -17,7 +17,7 @@ export default function SearchBar({ onSearchChange, value }: SearchBarProps) {
 
   return (
     <div
-      className="min-w-[150px] sm:max-w-[250px] sm:w-max w-full flex px-4 py-3 bg-background border-2 border-secondary rounded-full text-foreground"
+      className="min-w-[150px] sm:max-w-[300px] sm:w-max w-full flex px-4 py-3 bg-background border-2 border-secondary rounded-full text-foreground"
     >
       <input
         type="text"

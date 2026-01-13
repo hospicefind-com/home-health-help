@@ -84,7 +84,7 @@ export default function SortDropdown({ selectedValue, onSortChange, loading }: S
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div
-            className="w-full sm:w-auto min-w-[200px] items-center justify-between gap-2 bg-primary rounded-full flex px-4 py-3 text-background"
+            className="w-full min-w-[200px] sm:max-w-[300px] sm:w-max items-center justify-between gap-2 bg-primary rounded-full flex px-4 py-3 text-background"
           >
             <span className="truncate text-left flex-1">
               {getSelectedText()}
@@ -100,7 +100,7 @@ export default function SortDropdown({ selectedValue, onSortChange, loading }: S
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent
-          className="w-[calc(100vw-16px)] mx-2 px-1 min-w-[200px] max-h-[400px] overflow-y-auto bg-primary text-background border-none rounded-3xl"
+          className="w-[calc(100vw-16px)] sm:max-w-lg mx-2 px-1 min-w-[200px] max-h-[400px] overflow-y-auto bg-primary text-background border-none rounded-3xl"
         >
           <DropdownMenuLabel className="text-xs font-bold">
             Sort by

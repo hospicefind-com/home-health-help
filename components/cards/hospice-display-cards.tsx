@@ -134,7 +134,7 @@ export default function HospiceCards({ page, zip, measureCode, scoreData, onLoad
   }
 
   return (
-    <div id="hospice-display-box" className="max-w-4xl p-2">
+    <div id="hospice-display-box" className="p-2">
       {isLoading ? (
         <div className="grid gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
