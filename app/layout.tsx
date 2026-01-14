@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Geist } from "next/font/google";
+import { Dongle } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/base-ui/navbar";
 import Providers from "@/app/providers";
@@ -15,6 +16,14 @@ const geistSans = Geist({
   display: "swap",
   subsets: ["latin"],
 });
+
+const dongle = Dongle({
+  weight: "400",
+  variable: "--font-dongle",
+  subsets: ["latin"],
+  display: "swap",
+  adjustFontFallback: false,
+})
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -62,10 +71,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning dir="ltr">
-      <head />
-      <body className={`${geistSans.className} antialiased root`}>
-        {/* Serwist goes outside your internal app providers */}
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistSans.className} ${dongle.variable} antialiased root`}>
         <Providers>
           <Navbar />
           {children}

@@ -3,7 +3,7 @@ import { Button } from "../base-ui/button";
 
 export default function LoginButton() {
   return (
-    <Button asChild size="sm" variant={"outline"}>
+    <Button asChild >
       <Link href="/auth/login">Sign in</Link>
     </Button>
   );

@@ -49,7 +49,7 @@ export default function Statistic({ measure, compare }: StatisticProps) {
           </span>
           {measure.footnote &&
             <Popout description={getFootnote(measure.footnote)}>
-              <span className="text-primary underline">{measure.footnote}</span>
+              <span className="text-accent underline">{measure.footnote}</span>
             </Popout>
           }
         </div>

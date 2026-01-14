@@ -12,12 +12,11 @@ export default {
     extend: {
       colors: {
         primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        accent: "var(--accent)",
         good: "var(--good)",
         warning: "var(--warning)",
         error: "var(--error)",
-        // Popover colors used by dropdowns/menus
-        popover: "var(--popover)",
-        "popover-foreground": "var(--popover-foreground)",
         background: {
           DEFAULT: "var(--background)",
           alt: "var(--background-alt)",
@@ -27,6 +26,10 @@ export default {
           alt: "var(--foreground-alt)",
         },
       },
+
+      fontFamily: {
+        dongle: ["var(--font-dongle)"],
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

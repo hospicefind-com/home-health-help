@@ -10,7 +10,7 @@ type PageProps = {
   }>;
 };
 
-export default async function AddColumn({ searchParams }: PageProps) {
+export default async function AddComparePage({ searchParams }: PageProps) {
   const initialSearch = (await searchParams)?.search ?? "";
   const initialSort = (await searchParams)?.sort ?? "";
 

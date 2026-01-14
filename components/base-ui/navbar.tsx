@@ -70,14 +70,15 @@ export default function Navbar() {
   }, [router, supabase]); // Removed supabase from dependencies to prevent recreation
 
   return (
-    <nav className="sticky top-0 z-50 bg-background border-b border-foreground-alt backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="sticky top-0 z-50 bg-background border-b border-foreground-alt ">
+      <div className="max-w-7xl mx-auto px-4 sm:px-2 lg:px-8">
         <div className="flex flex-row justify-between items-center h-16">
           <Link
             href="/"
-            className="text-xl font-bold text-foreground hover:text-foreground-alt transition"
+            className="text-4xl/7 font-dongle font-bold text-primary hover:text-foreground-alt transition"
           >
-            Find Hospices
+            Hospice <br />
+            Find
           </Link>
 
           <div className="flex items-center gap-4">
@@ -92,12 +93,9 @@ export default function Navbar() {
                 <Link href="/admin/dashboard">Dashboard</Link>
               </Button>
             )}
-            <Link
-              href="/about"
-              className="text-foreground hover:text-foreground-alt transition font-medium"
-            >
-              About
-            </Link>
+            <Button asChild >
+              <Link href="about">About</Link>
+            </Button>
             {isAuthenticated ? <LogoutButton /> : <LoginButton />}
             <ThemeSwitcher />
           </div>

@@ -1,6 +1,6 @@
-import AddColumn from "@/components/compare/addColumn";
-import NameColumn from "@/components/compare/nameColumn";
-import CompareColumn from "@/components/compare/compareColumn";
+import CompareAccordion from "./compareAccordion";
+import { getCombinedProviderData } from "@/lib/hospice-data/provider-data";
+import { getAllCodes } from "@/lib/hospice-data/get-code-details";
 
 // This allows Next.js to access searchParams in Server Components
 export default async function ComparePage({
@@ -10,30 +10,22 @@ export default async function ComparePage({
 }) {
   const params = await searchParams;
   const ccns = Array.isArray(params.ccn) ? params.ccn : params.ccn ? [params.ccn] : [];
+  const codes = await getAllCodes();
+  const add = ccns.length < 5;
+
+  const results = await Promise.all(
+    ccns.map((ccn) => getCombinedProviderData(ccn))
+  );
+
+  results.map((result) => {
+    result?.measures.sort((a, b) => {
+      return a.measureCode.localeCompare(b.measureCode);
+    })
+  })
 
   return (
-    // 1. max-h-screen (or a fixed px) ensures the scroll happens HERE, not on body
-    // 2. overflow-auto enables both X and Y scrolling simultaneously
-    <div className="w-full overflow-auto max-h-[calc(100vh-100px)] border border-gray-200">
-
-      {/* 3. min-w-max ensures the flex row doesn't try to squish columns */}
-      <div className="flex flex-row min-w-max items-stretch h-full">
-
-        {/* Note: Sticky columns usually need a background color to cover content scrolling under them */}
-        <div className="z-20 md:sticky md:left-0 bg-background">
-          <NameColumn />
-        </div>
-
-        {ccns.map((ccn) => (
-          <CompareColumn ccn={ccn} key={ccn} />
-        ))}
-
-        {ccns.length < 5 && (
-          <div className="w-svw sm:w-min">
-            <AddColumn />
-          </div>
-        )}
-      </div>
+    <div className="p-2 flex justify-center">
+      <CompareAccordion addable={add} codes={codes} data={results} />
     </div>
   );
 }
