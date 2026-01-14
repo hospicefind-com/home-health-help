@@ -16,6 +16,7 @@ export default async function DetailPage({ params, searchParams }: DetailPagePro
   const { ccn } = await params;
   const { view } = await searchParams;
   const data: EnrichedProviderData | null = await getEnrichedProviderData(ccn);
+  // console.log(data);
 
   if (!data) {
     return <div className="container mx-auto max-w-4xl px-4 py-8">Failed to load provider data</div>;

@@ -12,16 +12,16 @@ import {
  * Now handles case-insensitive matching
  */
 function createMeasureLookup(
-  records: Array<{ "Measure Code": string; "Score": string }> | null
+  records: Array<{ "measure_code": string; "score": string }> | null
 ): Map<string, string> {
   const lookup = new Map<string, string>();
   if (!records) return lookup;
 
   records.forEach(record => {
     // Store with uppercase key for case-insensitive matching
-    const measureCode = record["Measure Code"]?.trim().toUpperCase();
+    const measureCode = record["measure_code"]?.trim().toUpperCase();
     if (measureCode) {
-      lookup.set(measureCode, record["Score"]);
+      lookup.set(measureCode, record["score"]);
     }
   });
 
