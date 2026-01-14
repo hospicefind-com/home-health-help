@@ -60,23 +60,14 @@ export async function SetHospicePassword(formData: FormData) {
   // Get the CMS data
   const cmsResponse = await GetCmsData(cmsPhoneQuery);
 
-  // STEP A: Unwrap the NextResponse
-  // Since GetCmsData returns NextResponse.json(...), we must parse it back
-  const wrapper = await cmsResponse.json();
-
-  // STEP B: Access the array inside the wrapper
-  // The wrapper looks like { providers: [ ... ] }
-  const providers = wrapper.providers;
-
-  if (!providers || providers.length === 0) {
+  if (!cmsResponse || cmsResponse.length === 0) {
     return { error: "Could not find a hospice matching that phone number." };
   }
 
   // STEP C: Get the CCN
   // Important: Since your query was "SELECT ccn", Socrata usually returns the key as "ccn", 
   // not "cms_certification_number_ccn". We check both just in case.
-  const firstMatch = providers[0];
-  const ccn = firstMatch.ccn || firstMatch.cms_certification_number_ccn;
+  const ccn = cmsResponse[0].cms_certification_number_ccn;
 
   if (!ccn) {
     return { error: "Found the hospice, but the CCN was missing." };
