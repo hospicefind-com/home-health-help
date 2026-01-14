@@ -7,16 +7,16 @@ interface CategoryCardProps {
   compare?: "stateAverage" | "nationalAverage"
 }
 
-export default function CategoryCard({ title, measures, compare } : CategoryCardProps){
+export default function CategoryCard({ title, measures, compare }: CategoryCardProps) {
   return (
-    <div className="bg-background border-2 border-foreground-alt rounded-2xl text-forground p-4">
-      <h1 className="font-bold text-lg mb-2">{title}</h1>
+    <div className="bg-background text-forground p-1">
+      <h1 className="font-bold text-lg">{title}</h1>
       {measures.map((measure, index) => (
         <article
           key={index}
           className="mb-2"
         >
-          <Statistic measure={ measure } compare={compare}/>
+          <Statistic measure={measure} compare={compare} />
         </article>
       ))}
     </div>

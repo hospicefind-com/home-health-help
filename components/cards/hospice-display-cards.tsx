@@ -88,7 +88,7 @@ export default function HospiceCards({ page, zip, measureCode, scoreData, onLoad
 
   // This redirects to the compare endpoint with the CCN's listed in the search params
   const handleCompare = () => {
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(searchParams.toString());
     selectedCCNs.forEach(ccn => params.append('ccn', ccn));
     router.push(`/compare?${params.toString()}`);
   };
@@ -128,10 +128,13 @@ export default function HospiceCards({ page, zip, measureCode, scoreData, onLoad
         createToast("You're already comparing this hospice");
       }
     }
+    else if (!isComparing) {
+      router.push(`/details/${ccn}`)
+    }
   }
 
   return (
-    <div id="hospice-display-box" className="max-w-4xl mx-auto px-4 py-8">
+    <div id="hospice-display-box" className="p-2">
       {isLoading ? (
         <div className="grid gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
@@ -161,73 +164,51 @@ export default function HospiceCards({ page, zip, measureCode, scoreData, onLoad
             return (
               <div
                 key={ccn}
-                className={`relative bg-background border rounded-lg p-6 transition ${selected
-                  ? 'border-primary ring-2 ring-primary'
-                  : 'border-foreground-alt hover:bg-background-alt hover:ring-2 hover:ring-primary'
+                className={`relative bg-background border rounded-lg p-3 transition ${selected
+                  ? 'border-accent ring-2 ring-accent'
+                  : 'border-foreground-alt hover:bg-background-alt hover:ring-2 hover:ring-accent'
                   } ${isComparing ? 'cursor-pointer' : ''}`}
-                onClick={isComparing ? () => toggleSelection(ccn) : undefined}
+                onClick={isComparing ? () => toggleSelection(ccn) : () => handleClickComparePage(ccn)}
               >
-                <div className="flex items-start gap-3">
-                  {isComparing ? (
-                    <input
-                      type="checkbox"
-                      checked={selected}
-                      onChange={() => toggleSelection(ccn)}
-                      disabled={!selected && selectedCCNs.length >= 5}
-                      onClick={(e) => e.stopPropagation()}
-                      className="mt-1 h-5 w-5 rounded border-foreground-alt cursor-pointer"
-                    />
-                  ) : null}
-
-                  {/* Card Content - disable navigation during comparison mode */}
-                  {isComparing || forComparePage ? (
-                    <div className="flex-1" onClick={() => handleClickComparePage(ccn)}>
-                      <div>
-                        <h3 className="text-xl font-bold text-foreground mb-2">
-                          {facility?.general_data.facility_name}
-                        </h3>
-                        <p className="text-foreground-alt mb-3">
-                          {facility?.general_data.ownership_type}
-                        </p>
-                        <p className="text-foreground-alt mb-3">
-                          {facility?.general_data.telephone_number}
-                        </p>
-                        <p className="text-foreground-alt mb-3">
-                          {real_desc}: {facility?.sortby_medicare_scores.score}{outOfDisplay}
-                        </p>
-                      </div>
-                    </div>
-                  ) : (
-                    <Link href={`/details/${ccn}`} className="flex-1">
-                      <div className="cursor-pointer">
-                        <h3 className="text-xl font-bold text-foreground mb-2">
-                          {facility?.general_data.facility_name}
-                        </h3>
-                        <p className="text-foreground-alt mb-3">
-                          {facility?.general_data.ownership_type}
-                        </p>
-                        <p className="text-foreground-alt mb-3">
-                          {facility?.general_data.telephone_number}
-                        </p>
-                        <p className="text-foreground-alt mb-3">
-                          {real_desc}: {facility?.sortby_medicare_scores.score}{outOfDisplay}
-                        </p>
-                      </div>
-                    </Link>
-                  )}
+                <h3 className="text-5xl/9 font-bold text-foreground mb-2 font-dongle">
+                  {facility?.general_data.facility_name}
+                </h3>
+                <div className="flex flex-row flex-1 items-end">
+                  <div className="flex-1">
+                    <p className="mb-2">
+                      {facility?.general_data.ownership_type}
+                    </p>
+                    <p className="mb-2">
+                      {facility?.general_data.telephone_number}
+                    </p>
+                    <p className="mb-2">
+                      {real_desc}: {facility?.sortby_medicare_scores.score}{outOfDisplay}
+                    </p>
+                  </div>
+                  <div>
+                    {isComparing ? (
+                      <input
+                        type="checkbox"
+                        checked={selected}
+                        onChange={() => toggleSelection(ccn)}
+                        disabled={!selected && selectedCCNs.length >= 5}
+                        onClick={(e) => e.stopPropagation()}
+                        className="mt-1 h-5 w-5 rounded border-foreground-alt cursor-pointer accent-accent"
+                      />
+                    ) : null}
+                    {/* Compare trigger - themed and positioned top-right when not in comparison mode */}
+                    {!isComparing && !forComparePage && (
+                      <Button
+                        size="lg"
+                        className="bg-accent"
+                        onClick={(e) => { e.stopPropagation(); setIsComparing(true); toggleSelection(ccn) }}
+                      >
+                        Compare
+                      </Button>
+                    )}
+                  </div>
                 </div>
 
-                {/* Compare trigger - themed and positioned top-right when not in comparison mode */}
-                {!isComparing && !forComparePage && (
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="absolute top-4 right-4 border-2 border-foreground text-foreground hover:bg-background-alt focus-visible:ring-2 focus-visible:ring-ring dark:focus-visible:ring-primary"
-                    onClick={(e) => { e.stopPropagation(); setIsComparing(true); }}
-                  >
-                    Compare
-                  </Button>
-                )}
               </div>
             );
           })}
@@ -237,24 +218,24 @@ export default function HospiceCards({ page, zip, measureCode, scoreData, onLoad
       {/* Floating Compare Bar */}
       {selectedCCNs.length > 0 && (
         <div
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground rounded-full shadow-lg px-6 py-3 flex items-center justify-center gap-4 z-50 w-full sm:w-max sm:max-w-[300px]"
+          className="grid grid-cols-3 items-center fixed bottom-2 left-1/2 -translate-x-1/2 bg-secondary text-primary-foreground rounded-full shadow-lg p-2 gap-4 z-50 w-full sm:w-max sm:max-w-[400px]"
         >
-          <span className="font-semibold">
-            {selectedCCNs.length} selected
-          </span>
           <button
-            onClick={() => setSelectedCCNs([])}
-            className="text-sm underline hover:no-underline"
+            onClick={() => { setSelectedCCNs([]); setIsComparing(false) }}
+            className="text-background underline hover:no-underline"
           >
             Clear
           </button>
           <button
             onClick={handleCompare}
             disabled={selectedCCNs.length < 2}
-            className="bg-background text-foreground px-4 py-2 rounded-full font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-background-alt transition"
+            className="bg-background text-foreground px-6 py-4 rounded-full font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-background-alt transition"
           >
             Compare
           </button>
+          <span className="font-semibold text-background">
+            {selectedCCNs.length} selected
+          </span>
         </div>
       )}
     </div>

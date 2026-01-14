@@ -3,13 +3,12 @@ import { EnrichedProviderData } from "@/lib/types";
 
 export default function NationalAvg({ data }: { data: EnrichedProviderData }) {
   return (
-    <div className="container mx-auto w-full px-4 py-8 space-y-8">
+    <div className="">
 
       {/* Quality Measures Section */}
-      <section className="rounded-lg border border-foreground-alt bg-background text-foreground p-6">
-        <h2 className="text-xl font-semibold mb-4">Quality Measures</h2>
+      <section className="bg-background text-foreground mt-2">
         {data.measures.length > 0 ? (
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid bg-foreground gap-[1px] md:grid-cols-2">
             <CategoryCard title="Family/Caregiver Experience" measures={
               data.measures.filter((measure) => measure.family_caregiver_experience)
             } compare="nationalAverage" />
@@ -26,6 +25,7 @@ export default function NationalAvg({ data }: { data: EnrichedProviderData }) {
                 !measure.quality_patient_care
               )
             } compare="nationalAverage" />
+            <div className="bg-background"></div>
           </div>
         ) : (
           <p className="text-sm text-foreground-alt italic">No quality measures available</p>

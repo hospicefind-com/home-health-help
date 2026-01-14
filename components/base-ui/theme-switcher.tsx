@@ -23,7 +23,7 @@ const ThemeSwitcher = () => {
   };
 
   return (
-    <Button variant="ghost" size="sm" onClick={toggleTheme}>
+    <Button variant="ghost" onClick={toggleTheme}>
       {theme === "dark" ? (
         <SunLight />
       ) : (
