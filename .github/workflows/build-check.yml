@@ -2,7 +2,7 @@ name: Build Check
 
 on:
   pull_request:
-    branches: [ "main" ] # Runs on any PR targeting main
+    branches: [ "main", "dev" ] # Runs on any PR targeting main
 
 jobs:
   docker-build:
@@ -23,4 +23,4 @@ jobs:
           # This runs 'npm run build' inside your Docker container
           build-args: |
             NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-            NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+            NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
