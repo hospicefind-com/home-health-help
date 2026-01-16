@@ -19,7 +19,6 @@ export default async function DetailPage({ params, searchParams }: DetailPagePro
   const { view } = await searchParams;
   const data: EnrichedProviderData | null = await getEnrichedProviderData(ccn);
   const placeId = await getPlaceId(ccn);
-  console.log(placeId);
 
   if (!data) {
     return <div className="container mx-auto max-w-4xl px-4 py-8">Failed to load provider data</div>;
@@ -30,10 +29,7 @@ export default async function DetailPage({ params, searchParams }: DetailPagePro
   return (
     <div className="max-w-screen-xl mx-auto px-2">
 
-      {/* Provider Header */}
-      <h1 className="text-6xl/9 font-dongle font-bold tracking-tight pt-4 bg-background">{data.facilityName}</h1>
-
-      {/* Contact Information Section */}
+      {/* Provider Header */} <h1 className="text-6xl/9 font-dongle font-bold tracking-tight pt-4 bg-background">{data.facilityName}</h1> {/* Contact Information Section */}
       <section className="">
         <div className="space-y-1 text-sm mb-2">
           <p>{data.addressLine1}</p>
@@ -56,7 +52,7 @@ export default async function DetailPage({ params, searchParams }: DetailPagePro
       {currentView === "Overview" && <Overview data={data} />}
       {currentView === "State Average" && <StateAvg data={data} />}
       {currentView === "National Average" && <NationalAvg data={data} />}
-      {currentView === "Google Reviews" && placeId !== "" && <GoogleReviews placeID="placeId" />}
+      {currentView === "Google Reviews" && placeId !== "" && <GoogleReviews placeID={placeId} />}
 
     </div >
   )

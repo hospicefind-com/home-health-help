@@ -47,10 +47,10 @@ export default function Dropdown({ reviews }: { reviews: boolean }) {
                   National Average
                 </Menu.RadioItem>
                 {reviews && (
-                  <Menu.RadioItem closeOnClick value="Google Reviews"
+                  <Menu.RadioItem closeOnClick value="Reviews"
                     className="p-3 rounded-3xl data-[checked]:bg-background data-[checked]:text-foreground"
                   >
-                    Google Reviews
+                    Reviews
                   </Menu.RadioItem>
 
                 )}
