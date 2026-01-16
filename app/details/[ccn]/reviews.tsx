@@ -13,14 +13,15 @@ export default async function GoogleReviews({ placeID }: { placeID: string }) {
 
   const avgRating = sum / 5;
 
+  const color = 'var(--accent)';
+
   return (
-    <div className="container mx-auto w-full px-4 py-8 space-y-8">
-      <section className="rounded-lg border border-foreground-alt bg-background text-foreground p-6">
-        <h2 className="text-xl font-semibold mb-4">Reviews</h2>
+    <div className="">
+      <section className="bg-background text-foreground mt-2">
         <h2 className="font-light text-foreground-alt">Based off 5 latest reviews</h2>
-        <h2 className="text-xl font-semibold mb-4 flex flex-row">
+        <h2 className="text-4xl/7 font-dongle font-bold mb-4 flex flex-row items-center">
           <span>Average:</span>
-          <StarSolid color="#d3d3ff" />
+          <StarSolid color={color} width="1em" height="1em" />
           <span>{avgRating}</span>
         </h2>
         {reviews?.result.reviews?.map((review: PlaceReview, index) => (
