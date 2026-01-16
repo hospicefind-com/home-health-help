@@ -4,7 +4,7 @@ import { Menu } from "@base-ui-components/react";
 import { NavArrowDown } from "iconoir-react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
-export default function Dropdown() {
+export default function Dropdown({ reviews }: { reviews: boolean }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -46,6 +46,14 @@ export default function Dropdown() {
                 >
                   National Average
                 </Menu.RadioItem>
+                {reviews && (
+                  <Menu.RadioItem closeOnClick value="Google Reviews"
+                    className="p-3 rounded-3xl data-[checked]:bg-background data-[checked]:text-foreground"
+                  >
+                    Google Reviews
+                  </Menu.RadioItem>
+
+                )}
               </Menu.RadioGroup>
             </Menu.Popup>
           </Menu.Positioner>
