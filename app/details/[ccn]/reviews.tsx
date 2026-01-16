@@ -4,7 +4,10 @@ import { PlaceReview } from "@/lib/types";
 import { StarSolid } from "iconoir-react";
 
 export default async function GoogleReviews({ placeID }: { placeID: string }) {
+  console.log(placeID);
+  console.log("stufpiad ass fuckgin chud biafthcv");
   const reviews = await getNewestReviews(placeID);
+  console.log(reviews);
   let sum = 0;
   reviews?.result.reviews?.map((review: PlaceReview) => sum += review.rating);
 

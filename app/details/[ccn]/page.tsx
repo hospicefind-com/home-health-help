@@ -4,6 +4,8 @@ import Overview from "./overview";
 import StateAvg from "./stateAvg";
 import NationalAvg from "./nationalAvg";
 import Dropdown from "./dropdown";
+import GoogleReviews from "./reviews";
+import { getPlaceId } from "@/lib/google/get-placeid";
 
 interface DetailPageProps {
   params: Promise<{
@@ -16,7 +18,7 @@ export default async function DetailPage({ params, searchParams }: DetailPagePro
   const { ccn } = await params;
   const { view } = await searchParams;
   const data: EnrichedProviderData | null = await getEnrichedProviderData(ccn);
-  // console.log(data);
+  const placeId = await getPlaceId(ccn);
 
   if (!data) {
     return <div className="container mx-auto max-w-4xl px-4 py-8">Failed to load provider data</div>;
@@ -27,10 +29,7 @@ export default async function DetailPage({ params, searchParams }: DetailPagePro
   return (
     <div className="max-w-screen-xl mx-auto px-2">
 
-      {/* Provider Header */}
-      <h1 className="text-6xl/9 font-dongle font-bold tracking-tight pt-4 bg-background">{data.facilityName}</h1>
-
-      {/* Contact Information Section */}
+      {/* Provider Header */} <h1 className="text-6xl/9 font-dongle font-bold tracking-tight pt-4 bg-background">{data.facilityName}</h1> {/* Contact Information Section */}
       <section className="">
         <div className="space-y-1 text-sm mb-2">
           <p>{data.addressLine1}</p>
@@ -47,12 +46,13 @@ export default async function DetailPage({ params, searchParams }: DetailPagePro
       </section>
 
       <div className="sticky top-[65px]">
-        <Dropdown />
+        <Dropdown reviews={placeId !== ""} />
       </div>
 
       {currentView === "Overview" && <Overview data={data} />}
       {currentView === "State Average" && <StateAvg data={data} />}
       {currentView === "National Average" && <NationalAvg data={data} />}
+      {currentView === "Google Reviews" && placeId !== "" && <GoogleReviews placeID={placeId} />}
 
     </div >
   )

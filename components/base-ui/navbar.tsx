@@ -83,13 +83,13 @@ export default function Navbar() {
 
           <div className="flex items-center gap-4">
             {isHospiceUser && (
-              <Button asChild variant="outline" className="border-primary/50 hover:border-primary hover:bg-primary/10">
+              <Button asChild variant="secondary" className="border-primary/50 hover:border-primary hover:bg-primary/10">
                 <Link href="/hospice/dashboard">Dashboard</Link>
               </Button>
             )}
 
             {isAdminUser && (
-              <Button asChild variant="outline" className="border-primary/50 hover:border-primary hover:bg-primary/10">
+              <Button asChild variant="secondary" className="border-primary/50 hover:border-primary hover:bg-primary/10">
                 <Link href="/admin/dashboard">Dashboard</Link>
               </Button>
             )}
