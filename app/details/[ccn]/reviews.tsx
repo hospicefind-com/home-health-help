@@ -5,6 +5,7 @@ import { StarSolid } from "iconoir-react";
 
 export default async function GoogleReviews({ placeID }: { placeID: string }) {
   const reviews = await getNewestReviews(placeID);
+  console.log(reviews);
   let sum = 0;
   reviews?.result.reviews?.map((review: PlaceReview) => sum += review.rating);
 
