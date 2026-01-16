@@ -1,0 +1,12 @@
+<h2>You have been invited</h2>
+
+<p>You have been invited to join the referral network. Click the link below to accept the invite and set your password:</p>
+
+<p>
+  <a href="{{ .SiteURL }}/auth/confirm-page?token_hash={{ .TokenHash }}&type=invite&next={{ .RedirectTo }}">
+    Accept Invite
+  </a>
+</p>
+
+<p>If the button above doesn't work, copy and paste this link into your browser:</p>
+<p>{{ .SiteURL }}/auth/confirm-page?token_hash={{ .TokenHash }}&type=invite&next={{ .RedirectTo }}</p>
