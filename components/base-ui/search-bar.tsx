@@ -9,14 +9,14 @@ type SearchBarProps = {
 };
 
 export default function SearchBar({ onSearchChange, value }: SearchBarProps) {
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onSearchChange(event.target.value);
   };
 
   const handleKeyDown = (event: any) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && inputRef.current) {
       inputRef.current.blur();
     }
   };
