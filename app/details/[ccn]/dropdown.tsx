@@ -15,7 +15,7 @@ export default function Dropdown({ reviews }: { reviews: boolean }) {
     const params = new URLSearchParams(searchParams);
     params.set("view", newValue);
 
-    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   return (
