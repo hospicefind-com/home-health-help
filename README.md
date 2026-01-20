@@ -10,10 +10,10 @@
 
 ## Core Features
 
-- Hospice provider comparisons: Side-by-side comparisons of hospice providers with quality metrics, ratings, and services.
-- CMS data integration: Real-time use of CMS.gov Medicare hospice datasets via their public APIs.
-- Search & filtering: Geographic search by zip code and advanced filters to narrow providers by services and performance.
-- Quality metrics: Clear display of key performance indicators such as patient satisfaction, care quality, and compliance ratings drawn from Medicare data.
+- Search: Search hospices by zip code
+- Sort: Sort search results by different metrics
+- Details Page: Show all metrics for a specific hospice
+- Compare Page: Compare all metrics for up to 5 hospices at a time
 
 ## Technical Stack
 
