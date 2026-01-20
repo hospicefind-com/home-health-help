@@ -1,8 +1,4 @@
-<h1 align="center">Hospice Comparison Platform</h1>
-
-<p align="center">
- A consumer-focused platform empowering families to find and compare hospice providers using Medicare data
-</p>
+<h1 align="center">Hospice Find</h1>
 
 <p align="center">
   <a href="#getting-started"><strong>Getting Started</strong></a> ·
