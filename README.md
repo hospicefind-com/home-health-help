@@ -13,7 +13,7 @@
 - Search: Search hospices by zip code
 - Sort: Sort search results by different metrics
 - Details Page: Show all metrics for a specific hospice
-- Compare Page: Compare all metrics for up to 5 hospices at a time
+- Compare Page: Compare all metrics for up to 5 hospices at once
 
 ## Technical Stack
 
