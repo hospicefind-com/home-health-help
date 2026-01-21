@@ -94,7 +94,7 @@ export default function Navbar() {
               </Button>
             )}
             <Button asChild className="hidden sm:block" >
-              <Link href="about">About</Link>
+              <Link href="/about">About</Link>
             </Button>
             {isAuthenticated ? <LogoutButton /> : <LoginButton />}
             <ThemeSwitcher />
