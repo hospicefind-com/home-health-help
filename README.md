@@ -59,6 +59,7 @@
    NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321
    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=[ANON_KEY_FROM_SUPABASE_START_OUTPUT]
    SUPABASE_SERVICE_ROLE_KEY=[Service roll key]
+   SUPABASE_DB_PASSWORD=[database password from Supabase]
    NEXT_PUBLIC_GOOGLE_API_KEY=[Googel API key]
    DEV_BASE_URL=http://localhost:3000
    ```
@@ -88,6 +89,9 @@ npx supabase db reset
 # Push migrations to remote (production)
 npx supabase db push
 ```
+
+`npx supabase db push` requires `SUPABASE_DB_PASSWORD` to be set in your shell or
+in a loaded `.env` file before the CLI can connect to the remote database.
 
 ## Project Structure
 
